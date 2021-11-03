@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+
+</head>
+<body>
+    <header>
+        <h1>TIC-TAC-TOE</h1>
+        <h3>Player 1 Score: <span id="p1-score">0</span></h3>
+        <h3>Player 2 Score: <span id="p2-score">0</span></h3>
+        <h3>Tie: <span id="tie-marker">0</span></h3>
+        <h3>Turn: <span id="turn-marker">Player 1</span></h3>
+    </header>
+    <section class="tic-board">
+        <table>
+            <tr>
+                <td class="top-left" id="slot-1" onclick="clickBox(1, this)"></td>
+                <td id="slot-2" onclick="clickBox(2, this)"></td>
+                <td class="top-right" id="slot-3" onclick="clickBox(3, this)"></td>
+            </tr>
+            <tr>
+                <td id="slot-4" onclick="clickBox(4, this)"></td>
+                <td class="center" id="slot-5" onclick="clickBox(5, this)"></td>
+                <td id="slot-6" onclick="clickBox(6, this)"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left" id="slot-7" onclick="clickBox(7, this)"></td>
+                <td id="slot-8" onclick="clickBox(8, this)"></td>
+                <td class="bottom-right" id="slot-9" onclick="clickBox(9, this)"></td>
+            </tr>
+        </table>
+    </section>
+
+    <script src="index.js"></script>
+</body>
+</html>
