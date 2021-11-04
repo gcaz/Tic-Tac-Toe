@@ -5,6 +5,7 @@ var possibleWins = [
 ];
 var currentTurn = "X";
 var winner = "";
+var winnerMessage = "";
 var winCheck = false;
 var maximumCheck = 0;
 
@@ -34,7 +35,7 @@ function checkWin() {
             winner = $(`#slot-${possibleWins[i][0]}`).html();
             winCheck = true;
             spaceUsed = endArray;
-            cleanUp();
+            declareWinner();
             break; 
         }
     }
@@ -42,7 +43,7 @@ function checkWin() {
     if(maximumCheck > 8 && !winCheck) {
         winCheck = true;
         spaceUsed = endArray;
-        cleanUp();
+        declareWinner();
     }
 
     if(!winCheck) {
@@ -63,23 +64,32 @@ function nextTurn() {
     $("#turn-marker").html(currentPlayer);
 }
 
-function cleanUp() {
+function declareWinner() {
     if(winner == "X") {
         firstPlayerScore++;
         $("#p1-score").html(`${firstPlayerScore}`);
-        alert("Player 1 Wins!");
+        winnerMessage = "Player 1 Wins!";
     }
     else if(winner == "O") {
         secondPlayerScore++;
         $("#p2-score").html(`${secondPlayerScore}`);
-        alert("Player 2 Wins!");
+        winnerMessage = "Player 2 Wins!";
     }
     else {
         ties++;
         $("#tie-marker").html(`${ties}`);
-        alert("It's a Tie!");
+        winnerMessage = "It's a Tie!";
     }
 
+    $(".tic-board").append(`
+    <div id="end-message">
+        <h1>${winnerMessage}</h1>
+        <h3>Click below to restart</h3>
+        <button onclick="resetGame()">RESET</button>
+    </div>`);
+}
+
+function resetGame() {
     for(i = 1; i < 10; i++) {
         $(`#slot-${i}`).html("");
     }
@@ -90,4 +100,6 @@ function cleanUp() {
     maximumCheck = 0;
     currentPlayer = "Player 1";
     $("#turn-marker").html(currentPlayer);
+
+    $("#end-message").remove();
 }
